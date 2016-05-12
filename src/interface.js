@@ -28,4 +28,8 @@ $( document ).ready(function() {
     $('#temperature').attr('class', thermostat.energyMonitor());
   }
 
+
+$.get("http://api.openweathermap.org/data/2.5/weather?q=London&mode=json&units=metric&APPID=94970d99a48188e387d14446d0b9d033", function(data){
+  $('#city-temp').text(data.main.temp);
+  });
 });
