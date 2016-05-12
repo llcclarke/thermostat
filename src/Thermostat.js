@@ -1,4 +1,6 @@
-"use strict";
+(function () {
+   'use strict';
+}());
 
 function Thermostat (){
   this.temperature = 20;
@@ -27,7 +29,7 @@ Thermostat.prototype.changePowerSavingMode = function(){
   this.maxTemp === 32 ? this.maxTemp = 25 : this.maxTemp = 32;
   if(this.temperature >25){
     this.temperature = 25;
-  };
+  }
 };
 
 Thermostat.prototype.reset = function(){
@@ -36,12 +38,12 @@ Thermostat.prototype.reset = function(){
 
 Thermostat.prototype.energyMonitor = function(){
  if(this.temperature < 18){
-  return 'Low';
+  return 'low';
  }
  else if (this.temperature < 25) {
-  return 'Medium';
+  return 'medium';
 }
 else {
-  return "High";
-  };
+  return "high";
+  }
 };

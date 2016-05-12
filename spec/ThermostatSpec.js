@@ -1,4 +1,6 @@
-"use strict";
+(function () {
+   'use strict';
+}());
 
 describe('Thermostat', function(){
   var thermostat;
@@ -24,7 +26,7 @@ describe('Thermostat', function(){
   it('has a minimum temperature of 10 degrees', function(){
     for (var i = 100; i >= 0; i--) {
       thermostat.down();
-    };
+    }
      expect(thermostat.temperature).toBeGreaterThan(9);
   });
 
@@ -37,7 +39,7 @@ describe('Thermostat', function(){
   it('if power saving mode is on, the maximum temperature is 25 degrees', function(){
     for (var i = 100; i >= 0; i--) {
       thermostat.up();
-    };
+    }
     expect(thermostat.temperature).toBeLessThan(26);
   });
 
@@ -46,7 +48,7 @@ describe('Thermostat', function(){
     thermostat.changePowerSavingMode();
     for (var i = 100; i >= 0; i--) {
       thermostat.up();
-    };
+    }
     expect(thermostat.temperature).toBeLessThan(33);
     expect(thermostat.temperature).toBeGreaterThan(25);
   });
@@ -55,7 +57,7 @@ describe('Thermostat', function(){
       thermostat.changePowerSavingMode();
       thermostat.changePowerSavingMode();
       expect(thermostat.maxTemp).toEqual(25);
-  })
+  });
 
   it('resets to 20 degrees', function(){
     thermostat.up();
@@ -66,28 +68,27 @@ describe('Thermostat', function(){
   it('returns "low" if temperature is below 18 degrees', function(){
    for (var i = 3; i >= 0; i--) {
      thermostat.down();
-   };
-   expect(thermostat.energyMonitor()).toEqual("Low");
+   }
+   expect(thermostat.energyMonitor()).toEqual("low");
   });
 
   it('returns "Medium" if temperature is between 18 - 25', function(){
-    expect(thermostat.energyMonitor()).toEqual("Medium");
+    expect(thermostat.energyMonitor()).toEqual("medium");
   });
 
   it('returns "Hot" if temperature is abover 25', function(){
     for (var i = 6; i >=0; i--){
       thermostat.up();
-    };
-    expect(thermostat.energyMonitor()).toEqual("High");
+    }
+    expect(thermostat.energyMonitor()).toEqual("high");
   });
   it ('resets to Powersaving Mode Max temp when you put Powersaving Mode back on', function(){
       thermostat.changePowerSavingMode();
     for (var i = 10; i >=0; i--){
       thermostat.up();
-    };
+    }
     thermostat.changePowerSavingMode();
     expect(thermostat.temperature).toEqual(25);
   });
 
 });
-
