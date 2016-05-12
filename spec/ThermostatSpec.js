@@ -63,4 +63,31 @@ describe('Thermostat', function(){
     expect(thermostat.temperature).toEqual(20);
   });
 
+  it('returns "low" if temperature is below 18 degrees', function(){
+   for (var i = 3; i >= 0; i--) {
+     thermostat.down();
+   };
+   expect(thermostat.energyMonitor()).toEqual("Low");
+  });
+
+  it('returns "Medium" if temperature is between 18 - 25', function(){
+    expect(thermostat.energyMonitor()).toEqual("Medium");
+  });
+
+  it('returns "Hot" if temperature is abover 25', function(){
+    for (var i = 6; i >=0; i--){
+      thermostat.up();
+    };
+    expect(thermostat.energyMonitor()).toEqual("High");
+  });
+  it ('resets to Powersaving Mode Max temp when you put Powersaving Mode back on', function(){
+      thermostat.changePowerSavingMode();
+    for (var i = 10; i >=0; i--){
+      thermostat.up();
+    };
+    thermostat.changePowerSavingMode();
+    expect(thermostat.temperature).toEqual(25);
+  });
+
 });
+
